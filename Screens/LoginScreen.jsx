@@ -11,6 +11,26 @@ import {
 import { useState } from "react";
 
 const Login = () => {
+    const [values, setValues] = useState({
+        email: "",
+        password: "",
+    });
+
+    const handleChange = (inputName, value) => {
+        setValues({
+            ...values,
+            [inputName]: value,
+        });
+    };
+
+    const handleSubmit = () => {
+        console.log(values);
+        setValues({
+            email: "",
+            password: "",
+        });
+    };
+
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
     const togglePasswordVisible = () => {
         setIsPasswordVisible(!isPasswordVisible);
@@ -58,6 +78,10 @@ const Login = () => {
                                     onFocus={() => {
                                         onHandleFocus("email");
                                     }}
+                                    value={values.email}
+                                    onChangeText={(value) =>
+                                        handleChange("email", value)
+                                    }
                                 />
                             </View>
                             <View
@@ -79,6 +103,10 @@ const Login = () => {
                                         onHandleFocus("password");
                                     }}
                                     secureTextEntry={!isPasswordVisible}
+                                    value={values.password}
+                                    onChangeText={(value) =>
+                                        handleChange("password", value)
+                                    }
                                 />
                                 <TouchableOpacity
                                     onPress={togglePasswordVisible}
@@ -89,7 +117,10 @@ const Login = () => {
                                     </Text>
                                 </TouchableOpacity>
                             </View>
-                            <TouchableOpacity style={styles.submitBtn}>
+                            <TouchableOpacity
+                                style={styles.submitBtn}
+                                onPress={handleSubmit}
+                            >
                                 <Text style={styles.submitBtnText}>Увійти</Text>
                             </TouchableOpacity>
                         </View>

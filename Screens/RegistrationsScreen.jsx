@@ -12,6 +12,28 @@ import { useState } from "react";
 import UserPhoto from "../Components/UserPhoto/UserPhoto";
 
 const Registration = () => {
+    const [values, setValues] = useState({
+        email: "",
+        name: "",
+        password: "",
+    });
+
+    const handleChange = (inputName, value) => {
+        setValues({
+            ...values,
+            [inputName]: value,
+        });
+    };
+
+    const handleSubmit = () => {
+        console.log(values);
+        setValues({
+            email: "",
+            name: "",
+            password: "",
+        });
+    };
+
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
     const togglePasswordVisible = () => {
         setIsPasswordVisible(!isPasswordVisible);
@@ -60,6 +82,10 @@ const Registration = () => {
                                     onFocus={() => {
                                         onHandleFocus("name");
                                     }}
+                                    value={values.name}
+                                    onChangeText={(value) =>
+                                        handleChange("name", value)
+                                    }
                                 />
                             </View>
                             <View
@@ -77,6 +103,10 @@ const Registration = () => {
                                     onFocus={() => {
                                         onHandleFocus("email");
                                     }}
+                                    value={values.email}
+                                    onChangeText={(value) =>
+                                        handleChange("email", value)
+                                    }
                                 />
                             </View>
                             <View
@@ -98,6 +128,10 @@ const Registration = () => {
                                         onHandleFocus("password");
                                     }}
                                     secureTextEntry={!isPasswordVisible}
+                                    value={values.password}
+                                    onChangeText={(value) =>
+                                        handleChange("password", value)
+                                    }
                                 />
                                 <TouchableOpacity
                                     onPress={togglePasswordVisible}
@@ -108,7 +142,10 @@ const Registration = () => {
                                     </Text>
                                 </TouchableOpacity>
                             </View>
-                            <TouchableOpacity style={styles.submitBtn}>
+                            <TouchableOpacity
+                                style={styles.submitBtn}
+                                onPress={handleSubmit}
+                            >
                                 <Text style={styles.submitBtnText}>
                                     Зареєстуватися
                                 </Text>
