@@ -8,6 +8,12 @@ const App = () => {
             {/* <Login /> */}
         </>
     );
+    return (
+        <>
+            {/* <Login /> */}
+            <Registration />
+        </>
+    );
 };
 
 export default App;

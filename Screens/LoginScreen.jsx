@@ -94,7 +94,7 @@ const Login = () => {
                                 ]}
                             >
                                 <TextInput
-                                    style={[styles.input, styles.inputPassword]}
+                                    style={[styles.inputPassword]}
                                     placeholder="Пароль"
                                     onBlur={() => {
                                         onHandleBlur("password");
@@ -140,7 +140,7 @@ const Login = () => {
                             >
                                 Немає акаунту?{" "}
                             </Text>
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={handle}>
                                 <Text
                                     style={{
                                         fontSize: 16,
@@ -205,33 +205,31 @@ const styles = StyleSheet.create({
         lineHeight: 19,
     },
     inputPassword: {
-        paddingHorizontal: 16,
         paddingVertical: 16,
         color: "#212121",
         // fontFamily: 'Roboto',
         fontSize: 16,
         fontWeight: "400",
         lineHeight: 19,
-        width: "100%",
-        maxWidth: "85%",
-    },
-    inputFocus: {
-        borderColor: "#FF6C00",
-        backgroundColor: "#FFF",
+        flex: 1,
     },
     inputPasswordCont: {
+        paddingHorizontal: 16,
+
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "space-between",
     },
     showBtn: {
         paddingVertical: 5,
-        marginRight: 16,
     },
     showBtnText: {
         color: "#1B4371",
         fontSize: 16,
         lineHeight: 19,
+    },
+    inputFocus: {
+        borderColor: "#FF6C00",
+        backgroundColor: "#FFF",
     },
     submitBtn: {
         paddingVertical: 16,

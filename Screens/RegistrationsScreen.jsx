@@ -231,7 +231,6 @@ const styles = StyleSheet.create({
         lineHeight: 19,
     },
     inputPassword: {
-        color: "#212121",
         paddingVertical: 16,
         // fontFamily: 'Roboto',
         fontSize: 16,
@@ -239,16 +238,17 @@ const styles = StyleSheet.create({
         lineHeight: 19,
         flex: 1,
     },
+    inputFocus: {
+        borderColor: "#FF6C00",
+        backgroundColor: "#FFF",
+    },
     inputPasswordCont: {
         paddingHorizontal: 16,
-
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "space-between",
     },
     showBtn: {
         paddingVertical: 5,
-        // marginRight: 16,
     },
     showBtnText: {
         color: "#1B4371",
