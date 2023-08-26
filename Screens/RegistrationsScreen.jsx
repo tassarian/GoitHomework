@@ -89,7 +89,7 @@ const Registration = () => {
                                 ]}
                             >
                                 <TextInput
-                                    style={[styles.input, styles.inputPassword]}
+                                    style={[styles.inputPassword]}
                                     placeholder="Пароль"
                                     onBlur={() => {
                                         onHandleBlur("password");
@@ -194,28 +194,25 @@ const styles = StyleSheet.create({
         lineHeight: 19,
     },
     inputPassword: {
-        paddingHorizontal: 16,
         paddingVertical: 16,
         color: "#212121",
         // fontFamily: 'Roboto',
         fontSize: 16,
         fontWeight: "400",
         lineHeight: 19,
-        width: "100%",
-        maxWidth: "85%",
+        flex: 1,
     },
     inputFocus: {
         borderColor: "#FF6C00",
         backgroundColor: "#FFF",
     },
     inputPasswordCont: {
+        paddingHorizontal: 16,
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "space-between",
     },
     showBtn: {
         paddingVertical: 5,
-        marginRight: 16,
     },
     showBtnText: {
         color: "#1B4371",
