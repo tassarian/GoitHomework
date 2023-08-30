@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { useState } from "react";
 
-const Login = () => {
+const Login = ({ navigation }) => {
     const [values, setValues] = useState({
         email: "",
         password: "",
@@ -29,6 +29,7 @@ const Login = () => {
             email: "",
             password: "",
         });
+        navigation.navigate("Home");
     };
 
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -140,7 +141,11 @@ const Login = () => {
                             >
                                 Немає акаунту?{" "}
                             </Text>
-                            <TouchableOpacity onPress={handle}>
+                            <TouchableOpacity
+                                onPress={() =>
+                                    navigation.navigate("Registration")
+                                }
+                            >
                                 <Text
                                     style={{
                                         fontSize: 16,

@@ -1,17 +1,10 @@
-// import Login from "./Screens/LoginScreen";
-import Registration from "./Screens/RegistrationsScreen";
+import "react-native-gesture-handler";
+import Navigation from "./Navigation";
 
 const App = () => {
     return (
         <>
-            <Registration />
-            {/* <Login /> */}
-        </>
-    );
-    return (
-        <>
-            {/* <Login /> */}
-            <Registration />
+            <Navigation />
         </>
     );
 };

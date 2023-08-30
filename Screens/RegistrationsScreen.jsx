@@ -11,7 +11,7 @@ import {
 import { useState } from "react";
 import UserPhoto from "../Components/UserPhoto/UserPhoto";
 
-const Registration = () => {
+const Registration = ({ navigation }) => {
     const [values, setValues] = useState({
         email: "",
         name: "",
@@ -32,6 +32,7 @@ const Registration = () => {
             name: "",
             password: "",
         });
+        navigation.navigate("Home");
     };
 
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -167,7 +168,9 @@ const Registration = () => {
                             >
                                 Вже є акаунт?{" "}
                             </Text>
-                            <TouchableOpacity>
+                            <TouchableOpacity
+                                onPress={() => navigation.navigate("Login")}
+                            >
                                 <Text
                                     style={{
                                         fontSize: 16,
