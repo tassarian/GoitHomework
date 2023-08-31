@@ -1,19 +1,22 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { StyleSheet, TouchableOpacity } from "react-native";
+import { StyleSheet } from "react-native";
 import Posts from "./PostsScreen";
 import CreatePost from "./CreatePostsScreen";
 import Profile from "./ProfileScreen";
 import Grid from "../assets/svg/Grid";
 import { Ionicons } from "@expo/vector-icons";
 import User from "../assets/svg/User";
-import Trash from "../assets/svg/Trash";
+import TabBar from "../Components/TabBar/TabBar";
+import { useHide } from "../hooks/useHide";
 
 const Tab = createBottomTabNavigator();
 
 const Home = () => {
+    const { show } = useHide();
     return (
         <Tab.Navigator
             initialRouteName="Posts"
+            tabBar={(props) => <TabBar {...props} />}
             screenOptions={{
                 tabBarShowLabel: false,
                 tabBarStyle: {
@@ -28,96 +31,29 @@ const Home = () => {
             }}
         >
             <Tab.Screen
-                options={({ navigation }) => ({
-                    tabBarButton: () => (
-                        <TouchableOpacity
-                            style={styles.TabBarItemFirst}
-                            onPress={() => {
-                                navigation.navigate("Posts");
-                            }}
-                        >
-                            <Grid />
-                        </TouchableOpacity>
-                    ),
-                })}
                 name="Posts"
                 component={Posts}
+                options={{ tabBarIcon: <Grid /> }}
             />
             <Tab.Screen
-                options={({ navigation, route }) => ({
-                    tabBarButton: () => (
-                        <TouchableOpacity
-                            style={[
-                                styles.TabBarMiddleItem,
-                                {
-                                    backgroundColor:
-                                        !route.name === "CreatePost"
-                                            ? "#F6F6F6"
-                                            : styles.TabBarMiddleItem
-                                                  .backgroundColor,
-                                },
-                            ]}
-                            onPress={() => {
-                                if (route.name === "CreatePost") {
-                                    navigation.navigate("CreatePost");
-                                } else {
-                                    navigation.goBack();
-                                }
-                            }}
-                        >
-                            {!route.name === "CreatePost" ? (
-                                <Trash />
-                            ) : (
-                                <Ionicons
-                                    name="add-outline"
-                                    size={24}
-                                    color="white"
-                                />
-                            )}
-                        </TouchableOpacity>
-                    ),
-                })}
                 name="CreatePost"
                 component={CreatePost}
+                action={() => show()}
+                options={{
+                    tabBarIcon: (
+                        <Ionicons name="add-outline" size={24} color="white" />
+                    ),
+                }}
             />
             <Tab.Screen
-                options={({ navigation }) => ({
-                    tabBarButton: () => (
-                        <TouchableOpacity
-                            style={styles.TabBarItem}
-                            onPress={() => {
-                                navigation.navigate("Profile");
-                            }}
-                        >
-                            <User />
-                        </TouchableOpacity>
-                    ),
-                })}
                 name="Profile"
                 component={Profile}
+                options={{
+                    tabBarIcon: <User />,
+                }}
             />
         </Tab.Navigator>
     );
 };
 
 export default Home;
-
-const styles = StyleSheet.create({
-    TabBarMiddleItem: {
-        flex: 1,
-        maxWidth: 70,
-        height: 40,
-        marginRight: 31,
-        backgroundColor: "#FF6C00",
-        borderRadius: 100,
-        justifyContent: "center",
-        alignItems: "center",
-    },
-    TabBarItem: {
-        width: 40,
-    },
-    TabBarItemFirst: {
-        width: 40,
-        marginRight: 31,
-    },
-});

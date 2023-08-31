@@ -1,12 +1,26 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import ArrowLeft from "../../assets/svg/ArrowLeft";
 import LogOut from "../../assets/svg/LogOut";
+import { useHide } from "../../hooks/useHide";
+import { useEffect } from "react";
 
-const Header = ({ posts = false, title, create = false, navigation }) => {
+const Header = ({
+    posts = false,
+    title,
+    create = false,
+    navigation,
+    action,
+}) => {
+    const { show, isHidden } = useHide();
+    const goBack = () => {
+        action;
+        navigation.goBack();
+    };
+
     return (
         <View style={styles.header}>
             {create && (
-                <TouchableOpacity onPress={() => navigation.goBack()}>
+                <TouchableOpacity onPress={goBack}>
                     <ArrowLeft />
                 </TouchableOpacity>
             )}
