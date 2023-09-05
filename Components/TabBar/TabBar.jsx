@@ -14,7 +14,7 @@ const TabBar = ({ state, descriptors, navigation }) => {
                 paddingBottom: 15,
                 backgroundColor: "#FFFFFF",
                 alignItems: "center",
-                borderTopColor: "#b3b3b3",
+                borderTopColor: "#E5E5E5",
                 borderTopWidth: 1,
                 justifyContent: "center",
                 gap: 32,
@@ -32,9 +32,6 @@ const TabBar = ({ state, descriptors, navigation }) => {
                         type: "tabPress",
                         target: route.key,
                     });
-                    if (route.name === "CreatePost") {
-                        hide();
-                    }
 
                     if (!isFocused && !event.defaultPrevented) {
                         navigation.navigate(route.name);
@@ -59,24 +56,12 @@ const TabBar = ({ state, descriptors, navigation }) => {
                         style={[
                             { width: 40, height: 40 },
                             route.name === "CreatePost"
-                                ? isFocused
-                                    ? styles.FocusedMiddleBtn
-                                    : styles.MiddleBtn
-                                : isHidden
-                                ? styles.hiddenBtn
+                                ? styles.MiddleBtn
                                 : null,
                         ]}
                         key={route.name}
                     >
-                        {route.name === "CreatePost" ? (
-                            isFocused ? (
-                                <Trash />
-                            ) : (
-                                icon
-                            )
-                        ) : (
-                            icon
-                        )}
+                        {icon}
                     </TouchableOpacity>
                 );
             })}

@@ -1,10 +1,13 @@
 import "react-native-gesture-handler";
 import Navigation from "./Navigation";
+import { ActionSheetProvider } from "@expo/react-native-action-sheet";
 
 const App = () => {
     return (
         <>
-            <Navigation />
+            <ActionSheetProvider>
+                <Navigation />
+            </ActionSheetProvider>
         </>
     );
 };

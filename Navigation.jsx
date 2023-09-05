@@ -2,7 +2,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Registration from "./Screens/RegistrationsScreen";
 import Login from "./Screens/LoginScreen";
-import Home from "./Screens/Home";
+import { TouchableWithoutFeedback, View } from "react-native";
+import { Home } from "./Screens/Home";
 
 const MainStack = createStackNavigator();
 
@@ -19,9 +20,13 @@ const Navigation = () => {
     );
 
     return (
-        <NavigationContainer>
-            <AuthScreens />
-        </NavigationContainer>
+        <TouchableWithoutFeedback>
+            <View style={{ flex: 1 }}>
+                <NavigationContainer>
+                    <AuthScreens />
+                </NavigationContainer>
+            </View>
+        </TouchableWithoutFeedback>
     );
 };
 

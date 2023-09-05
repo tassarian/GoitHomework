@@ -1,59 +1,76 @@
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { StyleSheet } from "react-native";
-import Posts from "./PostsScreen";
-import CreatePost from "./CreatePostsScreen";
-import Profile from "./ProfileScreen";
-import Grid from "../assets/svg/Grid";
-import { Ionicons } from "@expo/vector-icons";
-import User from "../assets/svg/User";
-import TabBar from "../Components/TabBar/TabBar";
-import { useHide } from "../hooks/useHide";
+import { createStackNavigator } from "@react-navigation/stack";
+import Map from "./MapScreen";
+import { TouchableOpacity, View } from "react-native";
+import MainTabs from "./MainTabs";
+import Comments from "./CommentsScreen";
+import { useNavigation } from "@react-navigation/native";
+import ArrowLeft from "../assets/svg/arrowLeft";
 
-const Tab = createBottomTabNavigator();
+const HomeStack = createStackNavigator();
 
-const Home = () => {
-    const { show } = useHide();
+const backBtn = () => {
+    const navigation = useNavigation();
     return (
-        <Tab.Navigator
-            initialRouteName="Posts"
-            tabBar={(props) => <TabBar {...props} />}
-            screenOptions={{
-                tabBarShowLabel: false,
-                tabBarStyle: {
-                    height: 64,
-                    paddingTop: 9,
-                    paddingBottom: 15,
-                    alignItems: "center",
-                    borderTopColor: "#b3b3b3",
-                    borderTopWidth: 1,
-                },
-                headerShown: false,
+        <TouchableOpacity
+            onPress={() => {
+                navigation.goBack();
             }}
         >
-            <Tab.Screen
-                name="Posts"
-                component={Posts}
-                options={{ tabBarIcon: <Grid /> }}
-            />
-            <Tab.Screen
-                name="CreatePost"
-                component={CreatePost}
-                action={() => show()}
-                options={{
-                    tabBarIcon: (
-                        <Ionicons name="add-outline" size={24} color="white" />
-                    ),
-                }}
-            />
-            <Tab.Screen
-                name="Profile"
-                component={Profile}
-                options={{
-                    tabBarIcon: <User />,
-                }}
-            />
-        </Tab.Navigator>
+            <ArrowLeft />
+        </TouchableOpacity>
     );
 };
-
-export default Home;
+export const Home = ({ navigation }) => {
+    return (
+        <HomeStack.Navigator
+            initialRouteName="MainTabs"
+            screenOptions={{
+                headerRightContainerStyle: {
+                    paddingRight: 16,
+                },
+                headerLeftContainerStyle: {
+                    paddingLeft: 16,
+                },
+                headerStyle: {
+                    borderBottomColor: "#E5E5E5",
+                    borderBottomWidth: 1,
+                },
+                headerTitleAlign: "center",
+            }}
+        >
+            <HomeStack.Screen
+                name="MainTabs"
+                component={MainTabs}
+                options={{
+                    headerShown: false,
+                }}
+            />
+            <HomeStack.Screen
+                name="Map"
+                component={Map}
+                options={
+                    {
+                        // headerBackTitleVisible: false,
+                        // headerTintColor: "#212121",
+                    }
+                }
+            />
+            <HomeStack.Screen
+                name="Comments"
+                component={Comments}
+                options={{
+                    title: "Коментарі",
+                    headerRight: () => (
+                        <View
+                            style={{
+                                width: 40,
+                                height: 40,
+                            }}
+                        ></View>
+                    ),
+                    headerLeft: () => backBtn(),
+                }}
+            />
+        </HomeStack.Navigator>
+    );
+};

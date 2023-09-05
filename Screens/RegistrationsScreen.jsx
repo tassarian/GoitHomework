@@ -66,123 +66,129 @@ const Registration = ({ navigation }) => {
                 >
                     <View style={styles.box}>
                         <UserPhoto />
-                        <Text style={styles.title}>Реєстрація</Text>
-                        <View style={styles.inputBox}>
-                            <View
-                                style={[
-                                    styles.inputItem,
-                                    isFocused.name ? styles.inputFocus : null,
-                                ]}
-                            >
-                                <TextInput
-                                    style={styles.input}
-                                    placeholder="Логін"
-                                    onBlur={() => {
-                                        onHandleBlur("name");
-                                    }}
-                                    onFocus={() => {
-                                        onHandleFocus("name");
-                                    }}
-                                    value={values.name}
-                                    onChangeText={(value) =>
-                                        handleChange("name", value)
-                                    }
-                                />
-                            </View>
-                            <View
-                                style={[
-                                    styles.inputItem,
-                                    isFocused.email ? styles.inputFocus : null,
-                                ]}
-                            >
-                                <TextInput
-                                    style={styles.input}
-                                    placeholder="Адреса електронної пошти"
-                                    onBlur={() => {
-                                        onHandleBlur("email");
-                                    }}
-                                    onFocus={() => {
-                                        onHandleFocus("email");
-                                    }}
-                                    value={values.email}
-                                    onChangeText={(value) =>
-                                        handleChange("email", value)
-                                    }
-                                />
-                            </View>
-                            <View
-                                style={[
-                                    styles.inputItem,
-                                    styles.inputPasswordCont,
-                                    isFocused.password
-                                        ? styles.inputFocus
-                                        : null,
-                                ]}
-                            >
-                                <TextInput
-                                    style={[styles.inputPassword]}
-                                    placeholder="Пароль"
-                                    onBlur={() => {
-                                        onHandleBlur("password");
-                                    }}
-                                    onFocus={() => {
-                                        onHandleFocus("password");
-                                    }}
-                                    secureTextEntry={!isPasswordVisible}
-                                    value={values.password}
-                                    onChangeText={(value) =>
-                                        handleChange("password", value)
-                                    }
-                                />
-                                <TouchableOpacity
-                                    onPress={togglePasswordVisible}
-                                    style={styles.showBtn}
+                        <View style={{ width: "100%" }}>
+                            <Text style={styles.title}>Реєстрація</Text>
+                            <View style={styles.inputBox}>
+                                <View
+                                    style={[
+                                        styles.inputItem,
+                                        isFocused.name
+                                            ? styles.inputFocus
+                                            : null,
+                                    ]}
                                 >
-                                    <Text style={styles.showBtnText}>
-                                        Показати
+                                    <TextInput
+                                        style={styles.input}
+                                        placeholder="Логін"
+                                        onBlur={() => {
+                                            onHandleBlur("name");
+                                        }}
+                                        onFocus={() => {
+                                            onHandleFocus("name");
+                                        }}
+                                        value={values.name}
+                                        onChangeText={(value) =>
+                                            handleChange("name", value)
+                                        }
+                                    />
+                                </View>
+                                <View
+                                    style={[
+                                        styles.inputItem,
+                                        isFocused.email
+                                            ? styles.inputFocus
+                                            : null,
+                                    ]}
+                                >
+                                    <TextInput
+                                        style={styles.input}
+                                        placeholder="Адреса електронної пошти"
+                                        onBlur={() => {
+                                            onHandleBlur("email");
+                                        }}
+                                        onFocus={() => {
+                                            onHandleFocus("email");
+                                        }}
+                                        value={values.email}
+                                        onChangeText={(value) =>
+                                            handleChange("email", value)
+                                        }
+                                    />
+                                </View>
+                                <View
+                                    style={[
+                                        styles.inputItem,
+                                        styles.inputPasswordCont,
+                                        isFocused.password
+                                            ? styles.inputFocus
+                                            : null,
+                                    ]}
+                                >
+                                    <TextInput
+                                        style={[styles.inputPassword]}
+                                        placeholder="Пароль"
+                                        onBlur={() => {
+                                            onHandleBlur("password");
+                                        }}
+                                        onFocus={() => {
+                                            onHandleFocus("password");
+                                        }}
+                                        secureTextEntry={!isPasswordVisible}
+                                        value={values.password}
+                                        onChangeText={(value) =>
+                                            handleChange("password", value)
+                                        }
+                                    />
+                                    <TouchableOpacity
+                                        onPress={togglePasswordVisible}
+                                        style={styles.showBtn}
+                                    >
+                                        <Text style={styles.showBtnText}>
+                                            Показати
+                                        </Text>
+                                    </TouchableOpacity>
+                                </View>
+                                <TouchableOpacity
+                                    style={styles.submitBtn}
+                                    onPress={handleSubmit}
+                                >
+                                    <Text style={styles.submitBtnText}>
+                                        Зареєстуватися
                                     </Text>
                                 </TouchableOpacity>
                             </View>
-                            <TouchableOpacity
-                                style={styles.submitBtn}
-                                onPress={handleSubmit}
-                            >
-                                <Text style={styles.submitBtnText}>
-                                    Зареєстуватися
-                                </Text>
-                            </TouchableOpacity>
-                        </View>
-                        <View
-                            style={{
-                                flexDirection: "row",
-                                justifyContent: "center",
-                                marginBottom: 45,
-                            }}
-                        >
-                            <Text
+                            <View
                                 style={{
-                                    fontSize: 16,
-                                    lineHeight: 19,
-                                    color: "#1B4371",
+                                    flexDirection: "row",
+                                    justifyContent: "center",
+                                    marginBottom: 45,
                                 }}
-                            >
-                                Вже є акаунт?{" "}
-                            </Text>
-                            <TouchableOpacity
-                                onPress={() => navigation.navigate("Login")}
                             >
                                 <Text
                                     style={{
                                         fontSize: 16,
                                         lineHeight: 19,
                                         color: "#1B4371",
-                                        borderBottomWidth: 1,
-                                        borderBottomColor: "#1B4371",
                                     }}
                                 >
-                                    Увійти
+                                    Вже є акаунт?{" "}
                                 </Text>
-                            </TouchableOpacity>
+                                <TouchableOpacity
+                                    onPress={() => navigation.navigate("Login")}
+                                >
+                                    <Text
+                                        style={{
+                                            fontSize: 16,
+                                            lineHeight: 19,
+                                            color: "#1B4371",
+                                            borderBottomWidth: 1,
+                                            borderBottomColor: "#1B4371",
+                                        }}
+                                    >
+                                        Увійти
+                                    </Text>
+                                </TouchableOpacity>
+                            </View>
                         </View>
                     </View>
                 </ImageBackground>
@@ -203,6 +209,7 @@ const styles = StyleSheet.create({
         borderTopStartRadius: 25,
         backgroundColor: "white",
         position: "relative",
+        alignItems: "center",
     },
     title: {
         marginTop: 92,
